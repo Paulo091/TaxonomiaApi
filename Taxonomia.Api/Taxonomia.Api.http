@@ -1,0 +1,6 @@
+@Taxonomia.Api_HostAddress = http://localhost:5283
+
+GET {{Taxonomia.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

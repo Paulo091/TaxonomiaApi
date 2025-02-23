@@ -1,0 +1,8 @@
+.vs/
+packages/
+Taxonomia.Api/bin
+Taxonomia.Api/obj
+Taxonomia.Data/bin
+Taxonomia.Data/obj
+Taxonomia.Domain/bin
+Taxonomia.Domain/obj
