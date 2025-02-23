@@ -1,13 +1,13 @@
-﻿using Taxonomia.Domain.DominioEntity;
+﻿using Taxonomia.Domain.Base.Models;
+using Taxonomia.Domain.DominioEntity;
 using Taxonomia.Domain.FiloEntity;
 
 namespace Taxonomia.Domain.ReinoEntity
 {
-    public class Reino
+    public class Reino : Entity
     {
-        public int Id { get; private set; }
         public string Nome { get; private set; }
-        public int DominioId { get; private set; }
+        public Guid DominioId { get; private set; }
         public Dominio Dominio { get; private set; }
         public ICollection<Filo> Filo { get; private set; }
     }

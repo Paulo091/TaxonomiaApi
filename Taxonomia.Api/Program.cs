@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Taxonomia.Data.DbContexts.SqlContext;
+using Taxonomia.Data.Repositorios.DominioRepository;
+using Taxonomia.Domain.DominioEntity.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SqlContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Sql"))
 );
+
+builder.Services.AddScoped<IDominioRepository, DominioRepository>();
 
 var app = builder.Build();
 
