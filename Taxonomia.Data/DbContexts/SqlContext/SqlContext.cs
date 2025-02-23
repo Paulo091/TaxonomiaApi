@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Taxonomia.Domain.ClasseEntity;
+using Taxonomia.Domain.DominioEntity;
 using Taxonomia.Domain.EspecieEntity;
 using Taxonomia.Domain.FamiliaEntity;
 using Taxonomia.Domain.FiloEntity;
@@ -15,6 +16,7 @@ namespace Taxonomia.Data.DbContexts.SqlContext
         public SqlContext(DbContextOptions<SqlContext> options) : base(options)
         { }
 
+        public DbSet<Dominio> Dominio { get; set; }
         public DbSet<Reino> Reino { get; set; }
         public DbSet<Filo> Filo { get; set; }
         public DbSet<Classe> Classe { get; set; }
@@ -36,6 +38,7 @@ namespace Taxonomia.Data.DbContexts.SqlContext
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Dominio>().ToTable("Dominio");
             modelBuilder.Entity<Reino>().ToTable("Reino");
             modelBuilder.Entity<Filo>().ToTable("Filo");
             modelBuilder.Entity<Classe>().ToTable("Classe");
@@ -44,6 +47,11 @@ namespace Taxonomia.Data.DbContexts.SqlContext
             modelBuilder.Entity<Genero>().ToTable("Genero");
             modelBuilder.Entity<Especie>().ToTable("Especie");
             modelBuilder.Entity<Organismo>().ToTable("Organismo");
+
+            modelBuilder.Entity<Dominio>()
+                .HasMany(r => r.Reino)
+                .WithOne(f => f.Dominio)
+                .HasForeignKey(f => f.DominioId);
 
             modelBuilder.Entity<Reino>()
                 .HasMany(r => r.Filo)

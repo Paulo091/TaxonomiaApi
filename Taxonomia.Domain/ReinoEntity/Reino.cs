@@ -1,4 +1,5 @@
-﻿using Taxonomia.Domain.FiloEntity;
+﻿using Taxonomia.Domain.DominioEntity;
+using Taxonomia.Domain.FiloEntity;
 
 namespace Taxonomia.Domain.ReinoEntity
 {
@@ -6,6 +7,8 @@ namespace Taxonomia.Domain.ReinoEntity
     {
         public int Id { get; private set; }
         public string Nome { get; private set; }
+        public int DominioId { get; private set; }
+        public Dominio Dominio { get; private set; }
         public ICollection<Filo> Filo { get; private set; }
     }
 }
