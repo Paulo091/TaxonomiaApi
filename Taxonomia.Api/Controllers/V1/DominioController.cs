@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Taxonomia.Domain.DominioEntity;
+using Taxonomia.Domain.DominioEntity.DTOs;
 using Taxonomia.Domain.DominioEntity.Interfaces;
 
 namespace Taxonomia.Api.Controllers.V1
@@ -7,18 +8,13 @@ namespace Taxonomia.Api.Controllers.V1
     [ApiController]    
     [Route("api/v1/dominio")]
     public class DominioController : ControllerBase
-    {
-        IDominioRepository _dominioRepository;
-
-        public DominioController(IDominioRepository dominioRepository) 
-        {
-            _dominioRepository = dominioRepository;
-        }
+    {        
+        public DominioController() {}
 
         [HttpGet]
-        public async Task<Dominio> Get(Guid id)
+        public async Task<IEnumerable<Dominio>> Get([FromServices] IDominioService service, [FromQuery] DominioViewModel query)
         {
-            var resultado = await _dominioRepository.ObterPorId(id);
+            var resultado = await service.ObterPorNome(query);
             return resultado;
         }
     }

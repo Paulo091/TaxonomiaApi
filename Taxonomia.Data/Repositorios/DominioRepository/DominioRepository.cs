@@ -10,10 +10,13 @@ namespace Taxonomia.Data.Repositorios.DominioRepository
     {
         public DominioRepository(SqlContext context) : base(context) { }
 
-        public async Task<Dominio?> ObterPorId(Guid id)
-            => await Db.Dominio.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<Dominio?> ObterRegistroPorId(Guid id)
+            => await ObterPorId(id);
 
         public async Task<IEnumerable<Dominio?>> ObterPorNome(string nome)
             => await Db.Dominio.AsNoTracking().Where(x => x.Nome.Contains(nome)).ToListAsync();
+
+        public async Task<IEnumerable<Dominio?>> Buscar(string nome)
+            => await Buscar(x => x.Id != null);
     }
 }

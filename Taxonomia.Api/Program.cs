@@ -1,22 +1,29 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Taxonomia.Api.Configs;
 using Taxonomia.Data.DbContexts.SqlContext;
-using Taxonomia.Data.Repositorios.DominioRepository;
-using Taxonomia.Domain.DominioEntity.Interfaces;
+using Taxonomia.Data.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<ApiBehaviorOptions>(options => {
+
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddDbContext<SqlContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Sql"))
 );
 
-builder.Services.AddScoped<IDominioRepository, DominioRepository>();
+builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 
