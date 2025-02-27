@@ -1,28 +1,29 @@
 ﻿using AutoMapper;
-using Taxonomia.Domain.DominioEntity.DTOs;
 using Taxonomia.Domain.DominioEntity.Interfaces;
+using Taxonomia.Domain.ReinoEntity.DTOs;
+using Taxonomia.Domain.ReinoEntity.Interfaces;
 
-namespace Taxonomia.Domain.DominioEntity.Services
+namespace Taxonomia.Domain.ReinoEntity.Services
 {
-    public class DominioService : IDominioService
+    public class ReinoService : IReinoService
     {
-        private readonly IDominioRepository _dominioRepository;
+        private readonly IReinoRepository _dominioRepository;
         private readonly IMapper _mapper;
 
-        public DominioService(IDominioRepository dominioRepository, IMapper mapper)
+        public ReinoService(IReinoRepository dominioRepository, IMapper mapper)
         {
             _dominioRepository = dominioRepository;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DominioResult?>> ObterPorNome(DominioViewModel query)
+        public async Task<IEnumerable<ReinoResult?>> ObterPorNome(ReinoViewModel query)
         {            
             var resultado = await _dominioRepository.Buscar(x =>
                 (query.Id == Guid.Empty || x.Id == query.Id) &&
                 (string.IsNullOrEmpty(query.Nome) || x.Nome.Contains(query.Nome))
             );
 
-            return _mapper.Map<IEnumerable<DominioResult>>(resultado);
+            return _mapper.Map<IEnumerable<ReinoResult>>(resultado);
         }
     }
 }

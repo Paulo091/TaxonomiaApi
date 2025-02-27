@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Taxonomia.Api.Configs;
+using Taxonomia.Api.Extensions;
 using Taxonomia.Data.DbContexts.SqlContext;
 using Taxonomia.Data.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddListAutoMapperCustom();
 
 builder.Services.AddControllers();
 

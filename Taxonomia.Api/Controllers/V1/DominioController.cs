@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Taxonomia.Domain.DominioEntity;
 using Taxonomia.Domain.DominioEntity.DTOs;
 using Taxonomia.Domain.DominioEntity.Interfaces;
 
@@ -12,7 +11,7 @@ namespace Taxonomia.Api.Controllers.V1
         public DominioController() {}
 
         [HttpGet]
-        public async Task<IEnumerable<Dominio>> Get([FromServices] IDominioService service, [FromQuery] DominioViewModel query)
+        public async Task<IEnumerable<DominioResult>> Get([FromServices] IDominioService service, [FromQuery] DominioViewModel query)
         {
             var resultado = await service.ObterPorNome(query);
             return resultado;
