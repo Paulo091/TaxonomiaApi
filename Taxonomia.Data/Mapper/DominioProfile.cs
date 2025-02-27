@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Taxonomia.Domain.DominioEntity;
 using Taxonomia.Domain.DominioEntity.DTOs;
+using Taxonomia.Domain.DominioEntity.Handlers.Commands;
 
 namespace Taxonomia.Data.Mapper
 {
@@ -9,6 +10,7 @@ namespace Taxonomia.Data.Mapper
         public DominioProfile()
         {
             CreateMap<Dominio, DominioResult>();
+            CreateMap<DominioAddCommand, Dominio>();
         }
     }
 }
