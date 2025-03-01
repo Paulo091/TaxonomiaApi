@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.Configure<ApiBehaviorOptions>(options => {
 
     options.SuppressModelStateInvalidFilter = true;

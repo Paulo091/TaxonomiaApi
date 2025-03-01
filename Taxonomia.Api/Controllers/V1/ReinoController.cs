@@ -5,7 +5,7 @@ using Taxonomia.Domain.ReinoEntity.Interfaces;
 namespace Taxonomia.Api.Controllers.V1
 {
     [ApiController]    
-    [Route("api/v1/reino")]
+    [Route("api/v1/[controller]")]
     public class ReinoController : ControllerBase
     {        
         public ReinoController() {}

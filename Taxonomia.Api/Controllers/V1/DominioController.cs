@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Taxonomia.Domain.Base.Interfaces;
 using Taxonomia.Domain.DominioEntity.DTOs;
 using Taxonomia.Domain.DominioEntity.Handlers.Commands;
 using Taxonomia.Domain.DominioEntity.Interfaces;
@@ -6,18 +7,18 @@ using Taxonomia.Domain.DominioEntity.Interfaces;
 namespace Taxonomia.Api.Controllers.V1
 {
     [ApiController]    
-    [Route("api/v1/dominio")]
-    public class DominioController : ControllerBase
+    [Route("api/v1/[controller]")]
+    public class DominioController : BaseController
     {        
-        public DominioController() {}
-
+        public DominioController(INotificador notificador) : base(notificador)  { }
+        
         [HttpGet]
-        public async Task<IEnumerable<DominioResult>> Get([FromServices] IDominioService service, [FromQuery] DominioViewModel query)
+        public async Task<IActionResult> Teste([FromServices] IDominioService service, [FromQuery] DominioViewModel query)
         {
             var resultado = await service.ObterPorNome(query);
-            return resultado;
+            return Response(resultado);
         }
-
+        
         [HttpPost]
         public async Task<DominioResult> Post([FromServices] IDominioHandler handler, [FromBody] DominioAddCommand command)
         {

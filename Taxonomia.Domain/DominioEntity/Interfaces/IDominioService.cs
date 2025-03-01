@@ -4,6 +4,6 @@ namespace Taxonomia.Domain.DominioEntity.Interfaces
 {
     public interface IDominioService
     {
-        Task<IEnumerable<DominioResult?>> ObterPorNome(DominioViewModel query);
+        Task<IEnumerable<DominioResult?>?> ObterPorNome(DominioViewModel query);
     }
 }
