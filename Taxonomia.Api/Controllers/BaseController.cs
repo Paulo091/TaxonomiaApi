@@ -15,7 +15,13 @@ namespace Taxonomia.Api.Controllers
 
         protected IActionResult CustomReturn(object? result)
         {
-            if (OperacaoValida() && result != null)
+            if(MensagemSucessoValida())
+                return Ok(new
+                {
+                    success = true,
+                    data = _notificador.ObterMensagemSucesso()
+                });
+            else if (OperacaoValida() && result != null)
                 return Ok(new
                 {
                     success = true,
@@ -33,5 +39,8 @@ namespace Taxonomia.Api.Controllers
 
         protected bool OperacaoValida()
             => !_notificador.TemNotificacao();
+
+        protected bool MensagemSucessoValida()
+            => _notificador.TemMensagemSucesso();
     }
 }

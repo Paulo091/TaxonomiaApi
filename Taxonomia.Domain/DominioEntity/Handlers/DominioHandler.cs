@@ -42,7 +42,6 @@ namespace Taxonomia.Domain.DominioEntity.Handlers
 
         public async Task<DominioResult> Handle(DominioUpdateCommand request, CancellationToken cancellationToken)
         {
-            var resultado = new DominioResult();
             try
             {
                 var dominioExistente = await _dominioRepository.Existente(x => x.Id == request.Id);
@@ -59,19 +58,19 @@ namespace Taxonomia.Domain.DominioEntity.Handlers
 
                 await _dominioRepository.SaveChangesAsync();
 
-                resultado = _mapper.Map<DominioResult>(dominio);
+                _notificador.MensagemSucesso("Registro Alterado com sucesso.");
             }
             catch
             {
                 _notificador.AddNotificacao("Não foi possível executar a operação.");
                 return null;
             }
-            return resultado;
+
+            return null;
         }
 
         public async Task<DominioResult> Handle(DominioDeleteCommand request, CancellationToken cancellationToken)
         {
-            var resultado = new DominioResult();
             try
             {
                 var dominioExistente = await _dominioRepository.Existente(x => x.Id == request.Id);
@@ -93,7 +92,6 @@ namespace Taxonomia.Domain.DominioEntity.Handlers
                 _notificador.AddNotificacao("Não foi possível executar a operação.");
                 return null;
             }
-            return resultado;
         }
     }
 }
