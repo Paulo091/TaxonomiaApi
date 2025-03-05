@@ -1,18 +1,15 @@
-﻿using Taxonomia.Domain.Base.Models;
-using Taxonomia.Domain.ReinoEntity;
+﻿using Taxonomia.Domain.ReinoEntity;
+using Taxonomia.Domain.TaxonomiaEntity;
 
 namespace Taxonomia.Domain.DominioEntity
 {
-    public class Dominio : Entity
+    public class Dominio : TaxonomiaBaseEntity
     {
         public Dominio() { }
-        public Dominio(string nome)
-        {
-            Id = new Guid();
-            Nome = nome;
-        }
 
-        public string Nome { get; private set; }
+        public Dominio(string nome) : base(nome)
+        { }
+
         public ICollection<Reino> Reino { get; private set; }
     }
 }

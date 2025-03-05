@@ -20,6 +20,9 @@ namespace Taxonomia.Data.Repositorios.Base
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
             => await DbSet.AsNoTracking().Where(predicate).ToListAsync();
 
+        public virtual async Task<bool> Existente(Expression<Func<TEntity, bool>> predicate)
+            => await DbSet.AnyAsync(predicate);
+
         public virtual async Task<TEntity> ObterPorId(Guid id)
             => await DbSet.FindAsync(id);
 

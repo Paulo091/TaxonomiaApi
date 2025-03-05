@@ -13,28 +13,25 @@ namespace Taxonomia.Api.Controllers
             _notificador = notificador;
         }
 
-        protected IActionResult Response(object? result)
+        protected IActionResult CustomReturn(object? result)
         {
-            if (OperacaoValida())
-            {
+            if (OperacaoValida() && result != null)
                 return Ok(new
                 {
                     success = true,
                     data = result
                 });
-            }
-
-            return BadRequest(new
-            {
-                success = false,
-                errors = _notificador.ObterNotificacoes().Select(n => n.Mensagem)
-            });
+            else if (OperacaoValida())
+                return NoContent();
+            else
+                return BadRequest(new
+                {
+                    success = false,
+                    errors = _notificador.ObterNotificacoes().Select(n => n.Mensagem)
+                });
         }
 
         protected bool OperacaoValida()
-        {
-            return !_notificador.TemNotificacao();
-        }
-
+            => !_notificador.TemNotificacao();
     }
 }

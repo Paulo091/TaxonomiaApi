@@ -29,7 +29,7 @@ namespace Taxonomia.Domain.DominioEntity.Services
             var resultado = await _dominioRepository.Buscar(x =>
                 (query.Id == Guid.Empty || x.Id == query.Id) &&
                 (string.IsNullOrEmpty(query.Nome) || x.Nome.Contains(query.Nome))
-            );
+            );            
 
             return _mapper.Map<IEnumerable<DominioResult>>(resultado);
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Taxonomia.Domain.Base.Models
+﻿namespace Taxonomia.Domain.Base.Models
 {
     public abstract class Entity
     {

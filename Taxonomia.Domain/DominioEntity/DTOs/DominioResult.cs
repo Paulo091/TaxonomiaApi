@@ -1,6 +1,4 @@
-﻿using Taxonomia.Domain.ReinoEntity;
-
-namespace Taxonomia.Domain.DominioEntity.DTOs
+﻿namespace Taxonomia.Domain.DominioEntity.DTOs
 {
     public class DominioResult
     {

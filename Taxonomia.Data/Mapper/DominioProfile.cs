@@ -11,6 +11,8 @@ namespace Taxonomia.Data.Mapper
         {
             CreateMap<Dominio, DominioResult>();
             CreateMap<DominioAddCommand, Dominio>();
+            CreateMap<DominioUpdateCommand, Dominio>();
+            CreateMap<DominioDeleteCommand, Dominio>();
         }
     }
 }
